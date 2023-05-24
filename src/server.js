@@ -2,7 +2,7 @@ require('colors')
 require('dotenv').config()
 const app = require('./app')
 
-const connectDb = require('./src/config/db')
+const connectDb = require('./config/db')
 
 const defaultPort = 3333
 const port = process.env.PORT || defaultPort

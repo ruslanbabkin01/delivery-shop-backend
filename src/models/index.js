@@ -1,15 +1,11 @@
-const { Shop, shopSchemas } = require('./shop')
-const { User, userSchemas } = require('./user')
-const { Order, orderSchemas } = require('./order')
-const { Product, productSchemas } = require('./product')
+const ShopModel = require('./shop')
+const ProductModel = require('./product')
+const UserModel = require('./user')
+const OrderModel = require('./order')
 
 module.exports = {
-  Shop,
-  shopSchemas,
-  User,
-  userSchemas,
-  Order,
-  orderSchemas,
-  Product,
-  productSchemas,
+  ShopModel,
+  ProductModel,
+  UserModel,
+  OrderModel,
 }

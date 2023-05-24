@@ -1,51 +1,21 @@
-const { Schema, model } = require('mongoose')
-const Joi = require('joi')
-const handleSchemaValidationErrors = require('../helpers/handleSchemaValidationErrors')
+const mongoose = require('mongoose')
 
-const isPhoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/
-// /^(\+)?((\d{2,3}) ?\d|\d)(([ -]?\d)|( ?(\d{2,3}) ?)){5,12}\d$/
-
-const shopSchema = new Schema(
+const schema = mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'Set name for contact'],
-    },
-    products: {
-      type: String,
+      required: true,
       unique: true,
-    },
-    phone: {
-      type: String,
-      unique: true,
-      match: isPhoneRegex,
-    },
-    favorite: {
-      type: Boolean,
-      default: false,
     },
   },
-  { versionKey: false, timestamps: true }
+  {
+    versionKey: false,
+    timestamps: true,
+  }
 )
 
-contactSchema.post('save', handleSchemaValidationErrors)
+const ShopModel = mongoose.model('shop', schema)
 
-const updateFavoriteSchema = Joi.object({
-  favorite: Joi.bool().required(),
-})
+module.exports = ShopModel
 
-const addJoiSchema = Joi.object({
-  name: Joi.string().alphanum().required(),
-  email: Joi.string().email().required(),
-  phone: Joi.string().regex(isPhoneRegex).required(),
-  favorite: Joi.bool(),
-})
-
-const schemas = {
-  addJoiSchema,
-  updateFavoriteSchema,
-}
-
-const Contact = model('contact', contactSchema)
-
-module.exports = { Contact, schemas }
+// products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'product' }],

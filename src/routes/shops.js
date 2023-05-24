@@ -1,17 +1,12 @@
 const express = require('express')
-// const { contacts: ctrl } = require('../../controllers')
-// const {
-//   isValidId,
-//   authMiddleware,
-//   validation,
-//   ctrlWrapper,
-// } = require('../../middlewares')
+const { getAllShops } = require('../controllers')
+const { validateBody, ctrlWrapper } = require('../middlewares')
 // const { schemas } = require('../../models')
 
 const router = express.Router()
 
-router.get('/', authMiddleware, ctrlWrapper(ctrl.getAll))
+router.get('/', ctrlWrapper(getAllShops))
 
-router.get('/:shopId', isValidId, ctrlWrapper(ctrl.getById))
+// router.get('/:shopId', isValidId, ctrlWrapper(ctrl.getById))
 
 module.exports = router

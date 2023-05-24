@@ -2,10 +2,10 @@ const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
 
-const shopsRouter = require('./src/routes/shops')
-const productsRouter = require('./src/routes/products')
-const usersRouter = require('./src/routes/users')
-const ordersRouter = require('./src/routes/orders')
+const shopsRouter = require('./routes/shops')
+const productsRouter = require('./routes/products')
+// const usersRouter = require('./routes/users')
+// const ordersRouter = require('./routes/orders')
 
 const app = express()
 
@@ -17,12 +17,12 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 app.use('/api/shops', shopsRouter)
-app.use('/api/users', usersRouter)
 app.use('/api/products', productsRouter)
-app.use('/api/orders', ordersRouter)
+// app.use('/api/users', usersRouter)
+// app.use('/api/orders', ordersRouter)
 
-const errorRoutesHandler = require('./src/middlewares/errorRoutesHandler')
-const errorHandler = require('./src/middlewares/errorHandler')
+const errorRoutesHandler = require('./middlewares/errorRoutesHandler')
+const errorHandler = require('./middlewares/errorHandler')
 
 app.use('*', errorRoutesHandler)
 
