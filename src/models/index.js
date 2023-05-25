@@ -1,11 +1,10 @@
 const ShopModel = require('./shop')
-const ProductModel = require('./product')
-const UserModel = require('./user')
-const OrderModel = require('./order')
+const { ProductModel } = require('./product')
+const { OrderModel, addOrderJoiSchema } = require('./order')
 
 module.exports = {
   ShopModel,
   ProductModel,
-  UserModel,
   OrderModel,
+  addOrderJoiSchema,
 }

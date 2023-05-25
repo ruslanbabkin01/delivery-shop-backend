@@ -1,7 +1,6 @@
 const express = require('express')
 const { getAllProducts, getProductsByShopId } = require('../controllers')
-const { validateBody, ctrlWrapper, isValidId } = require('../middlewares')
-// const { schemas } = require('../../models')
+const { ctrlWrapper, isValidId } = require('../middlewares')
 
 const router = express.Router()
 

@@ -7,7 +7,7 @@ const isValidId = require('./isValidId')
 module.exports = {
   errorHandler,
   ctrlWrapper,
-  validateBody,
   errorRoutesHandler,
+  validateBody,
   isValidId,
 }

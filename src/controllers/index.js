@@ -1,12 +1,10 @@
 const getAllShops = require('./shops')
 const { getAllProducts, getProductsByShopId } = require('./products')
-const orders = require('./orders')
-const users = require('./users')
+const addOrder = require('./orders')
 
 module.exports = {
   getAllShops,
   getAllProducts,
   getProductsByShopId,
-  orders,
-  users,
+  addOrder,
 }

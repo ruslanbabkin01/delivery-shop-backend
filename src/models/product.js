@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
+const { Schema, model } = require('mongoose')
+const Joi = require('joi')
 
-const schema = mongoose.Schema(
+const schema = new Schema(
   {
     name: {
       type: String,
@@ -11,7 +12,7 @@ const schema = mongoose.Schema(
       required: [true, 'Price is required'],
     },
     owner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'shop',
       required: true,
     },
@@ -27,6 +28,15 @@ const schema = mongoose.Schema(
   { versionKey: false, timestamps: true }
 )
 
-const ProductModel = mongoose.model('product', schema)
+const ProductModel = model('product', schema)
 
-module.exports = ProductModel
+const productJoiSchema = Joi.object({
+  _id: Joi.string().required(),
+  name: Joi.string().required(),
+  price: Joi.number().required(),
+  owner: Joi.string().required(),
+  photoUrl: Joi.string().uri(),
+  quantity: Joi.number().required(),
+})
+
+module.exports = { ProductModel, productJoiSchema }

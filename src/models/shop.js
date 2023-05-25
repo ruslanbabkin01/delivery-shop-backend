@@ -1,12 +1,13 @@
-const mongoose = require('mongoose')
+const { Schema, model } = require('mongoose')
 
-const schema = mongoose.Schema(
+const schema = new Schema(
   {
     name: {
       type: String,
       required: true,
       unique: true,
     },
+    products: [{ type: Schema.Types.ObjectId, ref: 'product', default: [] }],
   },
   {
     versionKey: false,
@@ -14,7 +15,7 @@ const schema = mongoose.Schema(
   }
 )
 
-const ShopModel = mongoose.model('shop', schema)
+const ShopModel = model('shop', schema)
 
 module.exports = ShopModel
 
