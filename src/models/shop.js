@@ -18,5 +18,3 @@ const schema = new Schema(
 const ShopModel = model('shop', schema)
 
 module.exports = ShopModel
-
-// products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'product' }],

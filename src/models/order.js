@@ -28,6 +28,7 @@ const schema = new Schema(
       type: String,
       required: [true, 'Address is required'],
     },
+    shop: { type: Schema.Types.ObjectId, ref: 'shop', required: true },
     products: [
       {
         productId: {
