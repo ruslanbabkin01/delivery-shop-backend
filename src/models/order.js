@@ -28,6 +28,10 @@ const schema = new Schema(
       type: String,
       required: [true, 'Address is required'],
     },
+    totalPrice: {
+      type: Number,
+      required: [true, 'Total Price is required'],
+    },
     shop: { type: Schema.Types.ObjectId, ref: 'shop', required: true },
     products: [
       {
@@ -39,10 +43,6 @@ const schema = new Schema(
         quantity: { type: Number, required: true },
       },
     ],
-    totalPrice: {
-      type: Number,
-      required: [true, 'Total Price is required'],
-    },
   },
   { versionKey: false, timestamps: true }
 )
@@ -52,7 +52,7 @@ const addOrderJoiSchema = Joi.object({
   email: Joi.string().email().required(),
   phone: Joi.string().regex(phoneRegex).required(),
   address: Joi.string().required(),
-  price: Joi.number().required(),
+  totalPrice: Joi.number().required(),
   products: Joi.array()
     .items(
       Joi.object({
