@@ -9,22 +9,22 @@ const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/
 
 const schema = new Schema(
   {
-    userName: {
+    name: {
       type: String,
       required: [true, 'Name is required'],
       minlenght: 3,
     },
-    userEmail: {
+    email: {
       type: String,
       required: [true, 'Email is required'],
       match: emailRegex,
     },
-    userPhone: {
+    phone: {
       type: String,
       required: [true, 'Phone is required'],
       match: phoneRegex,
     },
-    userAddress: {
+    address: {
       type: String,
       required: [true, 'Address is required'],
     },
@@ -48,11 +48,11 @@ const schema = new Schema(
 )
 
 const addOrderJoiSchema = Joi.object({
-  userName: Joi.string().alphanum().required(),
-  userEmail: Joi.string().email().required(),
-  userPhone: Joi.string().regex(phoneRegex).required(),
-  userAddress: Joi.string().required(),
-  totalPrice: Joi.number().required(),
+  name: Joi.string().alphanum().required(),
+  email: Joi.string().email().required(),
+  phone: Joi.string().regex(phoneRegex).required(),
+  address: Joi.string().required(),
+  price: Joi.number().required(),
   products: Joi.array()
     .items(
       Joi.object({
