@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose')
 const Joi = require('joi')
-const { productJoiSchema } = require('./product')
 
 const emailRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -47,22 +46,22 @@ const schema = new Schema(
   { versionKey: false, timestamps: true }
 )
 
-const addOrderJoiSchema = Joi.object({
-  name: Joi.string().alphanum().required(),
-  email: Joi.string().email().required(),
-  phone: Joi.string().regex(phoneRegex).required(),
-  address: Joi.string().required(),
-  totalPrice: Joi.number().required(),
-  products: Joi.array()
-    .items(
-      Joi.object({
-        productId: productJoiSchema,
-        quantity: Joi.number().required(),
-      })
-    )
-    .required(),
-})
+// const addOrderJoiSchema = Joi.object({
+//   name: Joi.string().alphanum().required(),
+//   email: Joi.string().email().required(),
+//   phone: Joi.string().regex(phoneRegex).required(),
+//   address: Joi.string().required(),
+//   totalPrice: Joi.number().required(),
+//   products: Joi.array()
+//     .items(
+//       Joi.object({
+//         productId: Joi.string(),
+//         quantity: Joi.number().required(),
+//       })
+//     )
+//     .required(),
+// })
 
 const OrderModel = model('order', schema)
 
-module.exports = { OrderModel, addOrderJoiSchema }
+module.exports = { OrderModel, }

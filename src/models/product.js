@@ -39,4 +39,4 @@ const productJoiSchema = Joi.object({
   // quantity: Joi.number().required(),
 })
 
-module.exports = { ProductModel, productJoiSchema }
+module.exports = { ProductModel }
