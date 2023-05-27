@@ -12,11 +12,11 @@ const getAllOrders = async (req, res, next) => {
 }
 
 const addOrder = async (req, res) => {
-  const IdsEqual = checkOrderProductsShopId(req.body)
+  // const IdsEqual = checkOrderProductsShopId(req.body)
 
-  if (!IdsEqual) {
-    throw new Conflict('One order can only be processed from one shop')
-  }
+  // if (!IdsEqual) {
+  //   throw new Conflict('One order can only be processed from one shop')
+  // }
 
   const newOrder = await OrderModel.create({ ...req.body })
 
