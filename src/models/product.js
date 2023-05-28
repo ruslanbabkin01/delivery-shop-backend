@@ -20,10 +20,6 @@ const schema = new Schema(
       type: String,
       default: '',
     },
-    // quantity: {
-    //   type: Number,
-    //   default: 0,
-    // },
   },
   { versionKey: false, timestamps: true }
 )
@@ -36,7 +32,6 @@ const productJoiSchema = Joi.object({
   price: Joi.number().required(),
   owner: Joi.string().required(),
   photoUrl: Joi.string().uri(),
-  // quantity: Joi.number().required(),
 })
 
 module.exports = { ProductModel }

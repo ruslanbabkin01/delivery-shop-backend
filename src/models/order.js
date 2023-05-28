@@ -40,28 +40,31 @@ const schema = new Schema(
           required: true,
         },
         quantity: { type: Number, required: true },
+        owner: { type: Schema.Types.ObjectId, ref: 'shop', required: true },
       },
     ],
   },
   { versionKey: false, timestamps: true }
 )
 
-// const addOrderJoiSchema = Joi.object({
-//   name: Joi.string().alphanum().required(),
-//   email: Joi.string().email().required(),
-//   phone: Joi.string().regex(phoneRegex).required(),
-//   address: Joi.string().required(),
-//   totalPrice: Joi.number().required(),
-//   products: Joi.array()
-//     .items(
-//       Joi.object({
-//         productId: Joi.string(),
-//         quantity: Joi.number().required(),
-//       })
-//     )
-//     .required(),
-// })
+const addOrderJoiSchema = Joi.object({
+  name: Joi.string().alphanum().required(),
+  email: Joi.string().email().required(),
+  phone: Joi.string().regex(phoneRegex).required(),
+  address: Joi.string().required(),
+  totalPrice: Joi.number().required(),
+  shop: Joi.string().required(),
+  products: Joi.array()
+    .items(
+      Joi.object({
+        productId: Joi.string().required(),
+        quantity: Joi.number().required(),
+        owner: Joi.string().required(),
+      })
+    )
+    .required(),
+})
 
 const OrderModel = model('order', schema)
 
-module.exports = { OrderModel, }
+module.exports = { OrderModel, addOrderJoiSchema }
