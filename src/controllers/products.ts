@@ -1,6 +1,7 @@
 import { ProductModel } from '../schemas'
+import { Request, Response } from 'express'
 
-export const getAllProducts = async (req, res, next) => {
+export const getAllProducts = async (req: Request, res: Response, next) => {
   try {
     const products = await ProductModel.find({}, '-createdAt -updatedAt')
     res.json(products)
@@ -9,7 +10,11 @@ export const getAllProducts = async (req, res, next) => {
   }
 }
 
-export const getProductsByShopId = async (req, res, next) => {
+export const getProductsByShopId = async (
+  req: Request,
+  res: Response,
+  next
+) => {
   const { shopId } = req.params
   try {
     const products = await ProductModel.find(

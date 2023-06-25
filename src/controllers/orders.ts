@@ -1,8 +1,9 @@
 import { Conflict } from 'http-errors'
 import { OrderModel } from '../schemas'
 import { checkOrderProductsShopId } from '../helpers'
+import { Request, Response } from 'express'
 
-export const getAllOrders = async (req, res, next) => {
+export const getAllOrders = async (req: Request, res: Response, next) => {
   try {
     const orders = await OrderModel.find({}, '-createdAt -updatedAt')
     res.json(orders)
@@ -11,7 +12,7 @@ export const getAllOrders = async (req, res, next) => {
   }
 }
 
-export const addOrder = async (req, res) => {
+export const addOrder = async (req: Request, res: Response) => {
   const IdsEqual = checkOrderProductsShopId(req.body)
 
   if (!IdsEqual) {
@@ -23,7 +24,7 @@ export const addOrder = async (req, res) => {
   return res.status(201).json(newOrder)
 }
 
-export const getUserOrder = async (req, res) => {
+export const getUserOrder = async (req: Request, res: Response) => {
   const order = await OrderModel.find({ ...req.body }, '-createdAt -updatedAt')
     .populate('products.product', '-createdAt -updatedAt')
     .populate('shop', '-createdAt -updatedAt')

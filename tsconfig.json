@@ -1,11 +1,16 @@
 {
     "compilerOptions": {
-      "rootDir": "./src",
-      "outDir": "./dist",
-      "module": "NodeNext",
-      "moduleResolution": "NodeNext",
+      "rootDir": "src",
+      "outDir": "dist",
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "moduleResolution": "node",
       "target": "ES6",
+       "baseUrl": ".",
       "sourceMap": true,
     },
     "include": ["src/**/*"],
+     "paths": {
+            "*": ["node_modules/*", "src/types/*"]
+        }
   }
