@@ -1,7 +1,8 @@
-const { isValidObjectId } = require('mongoose')
-const { requestError } = require('../helpers')
+import { isValidObjectId } from 'mongoose'
+import { requestError } from '../helpers'
+import { Request, Response } from 'express'
 
-const isValidId = (req, res, next) => {
+export const isValidId = (req: Request, res: Response, next) => {
   const { shopId } = req.params
   const IsCorrectId = isValidObjectId(shopId)
   if (!IsCorrectId) {
@@ -10,5 +11,5 @@ const isValidId = (req, res, next) => {
   }
   next()
 }
-
-module.exports = isValidId
+{
+}

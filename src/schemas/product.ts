@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose')
-const Joi = require('joi')
+import { Schema, model } from 'mongoose'
+import Joi from 'joi'
 
 const schema = new Schema(
   {
@@ -24,7 +24,7 @@ const schema = new Schema(
   { versionKey: false, timestamps: true }
 )
 
-const ProductModel = model('product', schema)
+export const ProductModel = model('product', schema)
 
 const productJoiSchema = Joi.object({
   _id: Joi.string().required(),
@@ -33,5 +33,3 @@ const productJoiSchema = Joi.object({
   owner: Joi.string().required(),
   photoUrl: Joi.string().uri(),
 })
-
-module.exports = { ProductModel }

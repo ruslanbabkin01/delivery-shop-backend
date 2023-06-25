@@ -1,6 +1,6 @@
-const { ProductModel } = require('../models')
+import { ProductModel } from '../schemas'
 
-const getAllProducts = async (req, res, next) => {
+export const getAllProducts = async (req, res, next) => {
   try {
     const products = await ProductModel.find({}, '-createdAt -updatedAt')
     res.json(products)
@@ -9,7 +9,7 @@ const getAllProducts = async (req, res, next) => {
   }
 }
 
-const getProductsByShopId = async (req, res, next) => {
+export const getProductsByShopId = async (req, res, next) => {
   const { shopId } = req.params
   try {
     const products = await ProductModel.find(
@@ -25,5 +25,3 @@ const getProductsByShopId = async (req, res, next) => {
     next(error)
   }
 }
-
-module.exports = { getAllProducts, getProductsByShopId }

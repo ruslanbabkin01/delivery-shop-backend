@@ -1,5 +1,7 @@
-const validateBody = schema => {
-  return (req, res, next) => {
+import { Request, Response } from 'express'
+
+export const validateBody = schema => {
+  return (req: Request, res: Response, next) => {
     const { error } = schema.validate(req.body)
     if (error) {
       console.log(error)
@@ -9,5 +11,3 @@ const validateBody = schema => {
     next()
   }
 }
-
-module.exports = validateBody

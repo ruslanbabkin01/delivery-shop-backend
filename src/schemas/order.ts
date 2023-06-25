@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose')
-const Joi = require('joi')
+import { Schema, model } from 'mongoose'
+import Joi from 'joi'
 
 const emailRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -47,7 +47,7 @@ const schema = new Schema(
   { versionKey: false, timestamps: true }
 )
 
-const addOrderJoiSchema = Joi.object({
+export const addOrderJoiSchema = Joi.object({
   name: Joi.string().alphanum().required(),
   email: Joi.string().email().required(),
   phone: Joi.string().regex(phoneRegex).required(),
@@ -65,6 +65,4 @@ const addOrderJoiSchema = Joi.object({
     .required(),
 })
 
-const OrderModel = model('order', schema)
-
-module.exports = { OrderModel, addOrderJoiSchema }
+export const OrderModel = model('order', schema)

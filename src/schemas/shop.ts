@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+import { Schema, model } from 'mongoose';
 
 const schema = new Schema(
   {
@@ -15,6 +15,4 @@ const schema = new Schema(
   }
 )
 
-const ShopModel = model('shop', schema)
-
-module.exports = ShopModel
+export const ShopModel = model('shop', schema)

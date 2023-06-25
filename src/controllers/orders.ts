@@ -1,8 +1,8 @@
-const { checkOrderProductsShopId } = require('../helpers')
-const { OrderModel } = require('../models')
-const { Conflict } = require('http-errors')
+import { Conflict } from 'http-errors'
+import { OrderModel } from '../schemas'
+import { checkOrderProductsShopId } from '../helpers'
 
-const getAllOrders = async (req, res, next) => {
+export const getAllOrders = async (req, res, next) => {
   try {
     const orders = await OrderModel.find({}, '-createdAt -updatedAt')
     res.json(orders)
@@ -11,7 +11,7 @@ const getAllOrders = async (req, res, next) => {
   }
 }
 
-const addOrder = async (req, res) => {
+export const addOrder = async (req, res) => {
   const IdsEqual = checkOrderProductsShopId(req.body)
 
   if (!IdsEqual) {
@@ -23,12 +23,10 @@ const addOrder = async (req, res) => {
   return res.status(201).json(newOrder)
 }
 
-const getUserOrder = async (req, res) => {
+export const getUserOrder = async (req, res) => {
   const order = await OrderModel.find({ ...req.body }, '-createdAt -updatedAt')
     .populate('products.product', '-createdAt -updatedAt')
     .populate('shop', '-createdAt -updatedAt')
 
   return res.json(order)
 }
-
-module.exports = { addOrder, getAllOrders, getUserOrder }
