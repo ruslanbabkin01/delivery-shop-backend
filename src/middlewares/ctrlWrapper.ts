@@ -1,7 +1,13 @@
-import { Request, Response } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
-export const ctrlWrapper = ctrl => {
-  return async (req: Request, res: Response, next) => {
+type Controller = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => Promise<any>
+
+export const ctrlWrapper = (ctrl: Controller) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     try {
       await ctrl(req, res, next)
     } catch (error) {

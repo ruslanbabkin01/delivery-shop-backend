@@ -1,7 +1,11 @@
+import { Request, Response, NextFunction } from 'express'
 import { ProductModel } from '../schemas'
-import { Request, Response } from 'express'
 
-export const getAllProducts = async (req: Request, res: Response, next) => {
+export const getAllProducts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const products = await ProductModel.find({}, '-createdAt -updatedAt')
     res.json(products)
@@ -13,7 +17,7 @@ export const getAllProducts = async (req: Request, res: Response, next) => {
 export const getProductsByShopId = async (
   req: Request,
   res: Response,
-  next
+  next: NextFunction
 ) => {
   const { shopId } = req.params
   try {

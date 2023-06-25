@@ -1,7 +1,11 @@
-import { Request, Response } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
-export const validateBody = schema => {
-  return (req: Request, res: Response, next) => {
+interface IValidationSchema {
+  validate: (body: any) => { error?: any }
+}
+
+export const validateBody = (schema: IValidationSchema) => {
+  return (req: Request, res: Response, next: NextFunction) => {
     const { error } = schema.validate(req.body)
     if (error) {
       console.log(error)

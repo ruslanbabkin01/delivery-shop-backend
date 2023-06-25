@@ -1,6 +1,11 @@
-import { Request, Response } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
-export const errorHandler = (err, req: Request, res: Response, next) => {
+export const errorHandler = (
+  err: Error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const statusCode = res.statusCode || 500
 
   console.log(err.stack)

@@ -1,9 +1,13 @@
+import { Request, Response, NextFunction } from 'express'
 import { Conflict } from 'http-errors'
 import { OrderModel } from '../schemas'
 import { checkOrderProductsShopId } from '../helpers'
-import { Request, Response } from 'express'
 
-export const getAllOrders = async (req: Request, res: Response, next) => {
+export const getAllOrders = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const orders = await OrderModel.find({}, '-createdAt -updatedAt')
     res.json(orders)

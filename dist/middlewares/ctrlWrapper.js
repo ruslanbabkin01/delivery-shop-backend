@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ctrlWrapper = void 0;
-const ctrlWrapper = ctrl => {
+const ctrlWrapper = (ctrl) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             yield ctrl(req, res, next);

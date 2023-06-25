@@ -1,8 +1,8 @@
+import { Request, Response, NextFunction } from 'express'
 import { isValidObjectId } from 'mongoose'
 import { requestError } from '../helpers'
-import { Request, Response } from 'express'
 
-export const isValidId = (req: Request, res: Response, next) => {
+export const isValidId = (req: Request, res: Response, next: NextFunction) => {
   const { shopId } = req.params
   const IsCorrectId = isValidObjectId(shopId)
   if (!IsCorrectId) {

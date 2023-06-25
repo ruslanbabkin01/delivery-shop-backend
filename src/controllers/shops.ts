@@ -1,7 +1,11 @@
+import { Request, Response, NextFunction } from 'express'
 import { ShopModel } from '../schemas'
-import { Request, Response } from 'express'
 
-export const getAllShops = async (req: Request, res: Response, next) => {
+export const getAllShops = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const shops = await ShopModel.find({}, '-createdAt -updatedAt')
     res.json(shops)
